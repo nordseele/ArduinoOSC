@@ -2,7 +2,9 @@
 #ifndef ARDUINOOSCWIFI_H
 #define ARDUINOOSCWIFI_H
 
-#if defined(ESP_PLATFORM) || defined(ESP8266) || defined(ARDUINO_AVR_UNO_WIFI_REV2) || defined(ARDUINO_SAMD_MKRWIFI1010) || defined(ARDUINO_SAMD_MKRVIDOR4000) || defined(ARDUINO_SAMD_MKR1000) || defined(ARDUINO_SAMD_NANO_33_IOT) || defined(RASPBERRYPI_PICO_W)
+// Added 'ARDUINO_RASPBERRY_PI_PICO_W' for Arduino PIco & PlatformIO. Macro should be seen, but not always the case
+
+#if defined(ESP_PLATFORM) || defined(ESP8266) || defined(ARDUINO_AVR_UNO_WIFI_REV2) || defined(ARDUINO_SAMD_MKRWIFI1010) || defined(ARDUINO_SAMD_MKRVIDOR4000) || defined(ARDUINO_SAMD_MKR1000) || defined(ARDUINO_SAMD_NANO_33_IOT) || defined(ARDUINO_RASPBERRY_PI_PICO_W)
 #define ARDUINOOSC_ENABLE_WIFI
 #endif
 
@@ -21,10 +23,11 @@
 #include <SPI.h>
 #include <WiFi101.h>
 #include <WiFiUdp.h>
-#elif defined(RASPBERRYPI_PICO_W)
+#elif defined(ARDUINO_RASPBERRY_PI_PICO_W) 
 #include <WiFi.h>
 #include <WiFiUdp.h>
 #endif
+
 #include "ArduinoOSC/ArduinoOSCCommon.h"
 using OscWiFiManager = ArduinoOSC::Manager<WiFiUDP>;
 #define OscWiFi OscWiFiManager::getInstance()
